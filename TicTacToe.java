@@ -1,22 +1,23 @@
 import java.util.Scanner;
 
 public class TicTacToe {
+	public char board[] = new char[10];
 	public char player_Symbol;
 	public char computer_Symbol;
 
     public static void main(String[] args) {
-        char[] board=createBoard();
 	TicTacToe tictactoe = new TicTacToe();
         Scanner userInput = new Scanner(System.in);
 	System.out.println("choose your letter: ");
 	tictactoe.chooseUserLetter(userInput.next());
-}
-    public static char[] createBoard(){
-        char[] board=new char[10];
-        for (int i=0;i< board.length;i++){
+	tictactoe.creatBoard();
+	tictactoe.ShowBoard();
+
+	}
+    public void creatBoard() {
+        for (int i=0; i < 10; i++) {
             board[i]=' ';
         }
-        return board;
     }
 
     public void chooseUserLetter(String symbol) {
@@ -29,4 +30,14 @@ public class TicTacToe {
 		computer_Symbol = 'X';
 	}
    }
+    public  void ShowBoard() {
+	System.out.println("|----|----|----|");
+	System.out.println("|    |    |    |");
+	System.out.println("|----|----|----|");
+	System.out.println("|    |    |    |");
+	System.out.println("|----|----|----|");
+	System.out.println("|    |    |    |");
+	System.out.println("|----|----|----|");
+
+        }
 }
