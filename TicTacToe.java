@@ -1,4 +1,3 @@
-package com.workshop;
 
 public class Tictactoe {
 
