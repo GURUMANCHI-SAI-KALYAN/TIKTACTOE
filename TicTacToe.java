@@ -6,6 +6,7 @@ public class TicTacToe {
 	public char player_Symbol;
 	public char computer_Symbol;
 	public static int first;
+	public static int k;
 
 
     public void creatBoard() {
@@ -35,24 +36,93 @@ public class TicTacToe {
 	System.out.println("|-----|-----|-----|");
 
         }
+	  public void checkwin() {
+        if ((board[1] == player_Symbol && board[2] == player_Symbol && board[3] == player_Symbol)) {
+            System.out.println("Player Wins");
+            System.exit(0);
+        }
+        if ((board[4] == player_Symbol && board[5] == player_Symbol && board[6] == player_Symbol)) {
+            System.out.println("Player Wins");
+            System.exit(0);
+        }
+        if ((board[7] == player_Symbol && board[8] == player_Symbol && board[9] == player_Symbol)) {
+            System.out.println("Player Wins");
+            System.exit(0);
+        }
+        if ((board[1] == player_Symbol && board[4] == player_Symbol && board[7] == player_Symbol)) {
+            System.out.println("Player Wins");
+            System.exit(0);
+        }
+        if ((board[2] == player_Symbol && board[5] == player_Symbol && board[8] == player_Symbol)) {
+            System.out.println("Player Wins");
+            System.exit(0);
+        }
+        if ((board[3] == player_Symbol && board[6] == player_Symbol && board[9] == player_Symbol)) {
+            System.out.println("Player Wins");
+            System.exit(0);
+        }
+        if ((board[1] == player_Symbol && board[5] == player_Symbol && board[9] == player_Symbol)) {
+            System.out.println("Player Wins");
+            System.exit(0);
+        }
+        if ((board[3] == player_Symbol && board[5] == player_Symbol && board[7] == player_Symbol)) {
+            System.out.println("Player Wins");
+            System.exit(0);
+        }
+        if ((board[1] == computer_Symbol && board[2] == computer_Symbol && board[3] == computer_Symbol)) {
+            System.out.println("Player Lost");
+            System.exit(0);
+        }
+        if ((board[4] == computer_Symbol && board[5] == computer_Symbol && board[6] == computer_Symbol)) {
+            System.out.println("Player Lost");
+            System.exit(0);
+        }
+        if ((board[7] == computer_Symbol && board[8] == computer_Symbol && board[9] == computer_Symbol)) {
+            System.out.println("Player Lost");
+            System.exit(0);
+        }
+        if ((board[1] == computer_Symbol && board[4] == computer_Symbol && board[7] == computer_Symbol)) {
+            System.out.println("Player Lost");
+            System.exit(0);
+        }
+        if ((board[2] == computer_Symbol && board[5] == computer_Symbol && board[8] == computer_Symbol)) {
+            System.out.println("Player Lost");
+            System.exit(0);
+        }
+        if ((board[3] == computer_Symbol && board[6] == computer_Symbol && board[9] == computer_Symbol)) {
+            System.out.println("Player Lost");
+            System.exit(0);
+        }
+        if ((board[1] == computer_Symbol && board[5] == computer_Symbol && board[9] == computer_Symbol)) {
+            System.out.println("Player Lost");
+            System.exit(0);
+        }
+        if ((board[3] == computer_Symbol && board[5] == computer_Symbol && board[7] == computer_Symbol)) {
+            System.out.println("Player Lost");
+            System.exit(0);
+        }
+    }
 
-   public void player_Move( int i,int first ) {	
+    public static void computer_Plays() {
+       int k = (int) (Math.floor(Math.random()) % 9 + 1); 
+        }
 
-	if (board[i] == ' ') {
+   public void player_Move( int i ,int first, int k) {
+      if ( board[i] == ' ') {
 	if ( first == 1 ) {
 	System.out.println("You Play First");
-		board[i] = player_Symbol;
+	board[i] = player_Symbol;
 	}
 	else {
 		System.out.println("Computer play First");
-		board[i] = computer_Symbol;
+		board[k] = computer_Symbol;
 	}
 	ShowBoard();
      }
   }
    
     public static void CheckWhoPlayFirst() {
-	int toss = (int) Math.round(Math.random()) % 2;
+	int toss = (int) Math.floor(Math.random()) % 2;
 	if (toss == 1) {
 	first = 1;
 	}
@@ -60,6 +130,24 @@ public class TicTacToe {
 	first = 0;
 	}
   }
+    public void play_Game() {
+        int j;
+        for (j = 0; j < 9; j++) {
+            if (first == 0) {
+		computer_Plays();
+		first = 1;
+	    }
+		else {
+			player_Move();
+                }
+		}
+		first = 0;
+	if (j == 9) {
+		System.out.println("GAME DRAW");
+		System.exit(0);
+	}
+   }
+}
    
     public static void main(String[] args) {
         TicTacToe tictactoe = new TicTacToe();
@@ -70,10 +158,9 @@ public class TicTacToe {
         tictactoe.chooseUserLetter(userInput.next());
         tictactoe.ShowBoard();
         System.out.println("Enter The Position (1-9)");
-        tictactoe.player_Move(userInput.nextInt(),first);
-        }
-
-
+        tictactoe.player_Move(userInput.nextInt(),first,k);
+        tictactoe.play_Game();
+	}
 }
 
 
